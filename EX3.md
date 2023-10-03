@@ -66,48 +66,43 @@ INSERT INTO DEPT (DEPTNO, DNAME, LOC) VALUES (40, 'OPERATIONS', 'BOSTON');
 ```
 
 ### Q1) List the name of the employees whose salary is greater than that of employee with empno 7566.
-
-
 ### QUERY:
-
-
+SELECT ename FROM EMP WHERE sal > (SELECT sal FROM EMP WHERE empno = 7566);
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/d46b20f9-b51a-47e8-a01c-441d86785ddc)
 
 ### Q2) List the ename,job,sal of the employee who get minimum salary in the company.
-
 ### QUERY:
-
-
+SELECT ename,job,sal FROM EMP WHERE sal = (SELECT MIN(sal) FROM EMP);
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/ede24143-cb8f-47f1-bc13-dfee36e44229)
 
 ### Q3) List ename, job of the employees who work in deptno 10 and his/her job is any one of the job in the department ‘SALES’.
-
 ### QUERY:
-
-
+SELECT ename,job FROM EMP WHERE deptno = 10 AND job IN (SELECT job FROM EMP WHERE job = 'sales');
 ### OUTPUT:
-
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/fc2ed4ae-4e04-415e-9a70-433fdbd12d18)
 
 ### Q4) Create a view empv5 (for the table emp) that contains empno, ename, job of the employees who work in dept 10.
-
 ### QUERY:
-
-
+create view empv5 as select EMPNO,ENAME,JOB from EMP where DEPTNO=10;
+SELECT * FROM empv5;
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/8cd5aae6-bc66-4f31-b88a-9d17c19232d2)
 
 ### Q5) Create a view with column aliases empv30 that contains empno, ename, sal of the employees who work in dept 30. Also display the contents of the view.
-
 ### QUERY:
-
-
+create view empv30 AS select EMPNO,ENAME,SAL from EMP where DEPTNO=30;
+SELECT * FROM empv30;
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/d6ebc67b-02ae-4140-b8b5-868e95ad51af)
 
 ### Q6) Update the view empv5 by increasing 10% salary of the employees who work as ‘CLERK’. Also confirm the modifications in emp table
-
 ### QUERY:
-
-
+UPDATE EMP SET sal = sal * 1.1 WHERE job = 'CLERK';
+create view empv5 as select EMPNO,ENAME,SALARY,JOB from EMP;
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/b3c77a42-9e1b-46b1-998d-fa24fb2f647f)
 
 ## Create a Customer1 Table
 ```sql
@@ -138,30 +133,32 @@ INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5007, 'Paul A
 INSERT INTO Salesman1 (salesman_id, name, city, commission) VALUES(5003, 'Lauson Hen', 'San Jose', 0.12);
 ```
 ### Q7) Write a SQL query to find the salesperson and customer who reside in the same city. Return Salesman, cust_name and city.
-
 ### QUERY:
-
-
+select s.name,c.cust_name,s.city from salesman1 s ,customer1 c where s.city=c.city;
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/ba1c4300-5ff9-400c-be9d-39f949d76932)
 
 ### Q8) Write a SQL query to find salespeople who received commissions of more than 13 percent from the company. Return Customer Name, customer city, Salesman, commission.
-
-
 ### QUERY:
-
-
+select s.name,c.cust_name,c.city,s.commission from salesman1 s inner join customer1 c on s.city=c.city where s.commission>0.13;
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/f54c0329-a900-4290-a936-f36465f7a2e4)
 
 ### Q9) Perform Natural join on both tables
-
 ### QUERY:
-
-
+ select * from salesman1 s natural join customer1 c;
 ### OUTPUT:
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/e76650f4-09e4-4425-b88a-a3318870cb84)
 
 ### Q10) Perform Left and right join on both tables
-
 ### QUERY:
-
-
+select s.name,c.cust_name,c.city,s.commission from salesman1 s left join customer1 c on s.salesman_id=c.salesman_id;
+select s.name,c.cust_name,c.city,s.commission from salesman1 s right join customer1 c on s.salesman_id=c.salesman_id;
 ### OUTPUT:
+## Left Joint
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/ee840e68-a604-4ee8-8d05-2c8b00496b1a)
+## Right Joint
+![image](https://github.com/Priya-Loganathan/EX-3-SubQueries-Views-and-Joins/assets/121166075/437d9ebf-d95c-4e75-a73f-4a6c2ddfc420)
+
+### RESULT:
+A database is created and views , subqueries and joins are executed successfully .
