@@ -1,5 +1,8 @@
 # EX 3 SubQueries, Views and Joins 
+## DATE: 18-08-2023
 
+## Aim:
+To view implement Subqueries , views and joins.
 
 ## Create employee Table
 ```sql
